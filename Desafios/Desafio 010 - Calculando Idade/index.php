@@ -14,7 +14,7 @@
     ?>
 
     <main>
-        <h1>Informe um número:</h1>
+        <h1>Calculadora de Idades:</h1>
         <form action="<?=$_SERVER['PHP_SELF']?>" method="get">
             <label for="nascimento">Em que ano nasceu?</label>
             <input type="number" name="nascimento" id="nascimento" value="<?=$nascimento?>" min="1900" max="<?php date('Y') ?>">
