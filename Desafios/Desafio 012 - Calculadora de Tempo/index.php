@@ -49,11 +49,5 @@
             </ul>";
         ?>
     </section>
-
-    <script>
-        function mostrarValor(valor) {
-            document.getElementById('valorPercentual').textContent = valor + '%';
-        }
-    </script>
 </body>
 </html>
