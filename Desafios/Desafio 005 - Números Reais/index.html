@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Números Reais</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <section>
+        <h1>Analisador de Número real:</h1>
+        <form action="reais.php" method="post">
+            <label for="reais">Número real:</label>
+            <input type="number" name="reais" step="0.001" min="0"> 
+            <!-- step="any": Permite que o campo aceite qualquer número, incluindo floats ou doubles, sem restrições no número de casas decimais.-->
+             <!-- min="0": Define o valor mínimo permitido como 0, o que pode ser útil para evitar números negativos, dependendo do contexto. -->
+            <input type="submit" value="Analisar">
+        </form>
+    </section>
+
+</body>
+</html>
