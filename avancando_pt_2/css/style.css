@@ -12,3 +12,52 @@ th, td {
 th {
     background-color: #f0f0f0;
 }
+
+.agregado {
+    color: rgb(0, 0, 0);
+}
+
+.saopaulo {
+    background: linear-gradient(to right, red, black);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+    text-align: center;
+    font-size: 3em;
+    margin: 0;
+    font-weight: bold;
+}
+
+.botafogo {
+    background: black;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+    text-align: center;
+    font-size: 2em;
+    margin: 0;
+    font-weight: bold;
+}
+
+h2.final {
+    color: black;
+}
+
+.liberta {
+    background-color: rgb(255, 255, 255);
+    text-align: center;
+}
+
+.penaltis {
+    background: black;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+    text-align: center;
+    font-size: 2em;
+    margin: 0;
+    font-weight: bold;
+}
