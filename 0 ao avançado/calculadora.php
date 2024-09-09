@@ -47,21 +47,31 @@
             operacao = '';
         }
 
-        // Função para capturar a operação e números
-        function capturarOperacao(op) {
-            const display = document.getElementById('display');
-            if (num1 === '') {
-                num1 = display.value;
+        function calcular() {
+            const display = document.getElementById('display').value;
+
+            // Verifica se temos os valores de num1, num2 e operacao
+            if (display !== '' && num1 !== '' && operacao !== '') {
+                num2 = display;  // Pega o número atual no display como num2
+
+                // Atualiza os valores dos campos escondidos
+                document.getElementById('num1Hidden').value = num1;
+                document.getElementById('num2Hidden').value = num2;
+                document.getElementById('operacaoHidden').value = operacao;
+
+                document.getElementById('calculadoraForm').submit();  // Submete o formulário
+            } else {
+                alert("Operação incompleta!");  // Caso faltem valores
             }
-            operacao = op;
-            display.value = ''; // Limpa o display para o segundo número
         }
 
-        // Função para calcular o resultado
-        function calcular() {
-            num2 = document.getElementById('display').value;
-            if (num1 && num2 && operacao) {
-                document.getElementById('calculadoraForm').submit(); // Submete o formulário
+        // Função para capturar a operação e números
+        function capturarOperacao(op) {
+            const display = document.getElementById('display').value;
+            if (display !== '') {
+                num1 = display;  // Armazena o número atual do display como num1
+                operacao = op;    // Armazena a operação
+                document.getElementById('display').value = '';  // Limpa o display para o segundo número
             }
         }
 
@@ -112,15 +122,15 @@
             <button type="button" onclick="atualizarDisplay('.')">.</button>
         </div>
 
-        <!-- Inputs escondidos para enviar os valores ao PHP -->
+        <!-- Inputs escondidos dentro do form para enviar os valores -->
         <input type="hidden" name="num1" id="num1Hidden">
-        <input type="hidden" name="operacao" id="operacaoHidden">
         <input type="hidden" name="num2" id="num2Hidden">
+        <input type="hidden" name="operacao" id="operacaoHidden">
     </form>
 
     <div>
         <p id="resultado">
-            <?php
+        <?php
             if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['num1'], $_GET['operacao'], $_GET['num2'])) {
                 $num1 = floatval($_GET['num1']);
                 $num2 = floatval($_GET['num2']);
@@ -135,17 +145,24 @@
                     default => "Operação inválida",
                 };
 
-                echo "Resultado: " . $resultado;
+                echo "Resultado: $resultado";
+
+                var_dump($_GET['num1'], $_GET['operacao'], $_GET['num2']);
             }
-            ?>
+        ?>
         </p>
     </div>
 
     <script>
         // Submete o formulário com os valores armazenados
-        document.getElementById('calculadoraForm').addEventListener('submit', function() {
+        document.getElementById('calculadoraForm').addEventListener('submit', function(event) {
+            if (!num1 || !operacao || !num2) {
+                event.preventDefault();  // Impede o envio se não houver os valores corretos
+                alert("Operação incompleta!");
+                return;
+            }
             document.getElementById('num1Hidden').value = num1;
-            document.getElementById('num2Hidden').value = document.getElementById('display').value;
+            document.getElementById('num2Hidden').value = num2;
             document.getElementById('operacaoHidden').value = operacao;
         });
     </script>
