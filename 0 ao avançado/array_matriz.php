@@ -16,11 +16,11 @@
     $pessoa = ['nome' => 'João', 'idade' => 25, 'cidade' => 'São Paulo'];
     echo $pessoa['nome'] . "<br>";
 
-    $matriz = array(
-        array('a', 'b', 'c'),
-        array('d', 'e', 'f'),
-        array('g', 'h', 'i')
-      );
+    $matriz = [
+        ['a', 'b', 'c'],
+        ['d', 'e', 'f'],
+        ['g', 'h', 'i']
+    ];
 
     for ($x=0; $x<3; $x++) {
         for ($y=0; $y<3; $y++) {
