@@ -1,33 +1,32 @@
 .calculadora {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
+    grid-template-areas:
+        "display display clear div"
+        "seven eight nine mul"
+        "four five six sub"
+        "one two three add"
+        "dot zero zero equal";
     gap: 10px;
     max-width: 200px;
     margin: 50px auto;
 }
 
-.calculadora input, .calculadora button {
-    padding: 20px;
-    font-size: 18px;
-    text-align: center;
-    cursor: pointer;
+.calculadora input#display {
+    grid-area: display;
+    background-color: #333;
+    color: white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
-.calculadora input#display {
-    grid-column: span 4;
-    background-color: #333;
+.calculadora button.clear {
+    grid-area: clear;
+    background-color: #ff3b30;
     color: white;
 }
 
-.calculadora button {
-    background-color: #f0f0f0;
-    border: none;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-}
-
-.calculadora button:hover {
-    background-color: #ccc;
+.calculadora button.clear:hover {
+    background-color: #d42f24;
 }
 
 .calculadora button.operacao {
@@ -42,14 +41,75 @@
 .calculadora button.igual {
     background-color: #28a745;
     color: white;
-    grid-column: span 1;
+    grid-area: equal;
 }
 
-.calculadora button.clear {
-    background-color: #ff3b30;
-    color: white;
+.calculadora button {
+    background-color: #f0f0f0;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    font-size: 18px;
+    padding: 20px;
+    cursor: pointer;
 }
 
-.calculadora button.clear:hover {
-    background-color: #d42f24;
+.calculadora button:hover {
+    background-color: #ccc;
+}
+
+.calculadora button#zero {
+    grid-area: zero;
+}
+
+.calculadora button#dot {
+    grid-area: dot;
+}
+
+.calculadora button#seven {
+    grid-area: seven;
+}
+
+.calculadora button#eight {
+    grid-area: eight;
+}
+
+.calculadora button#nine {
+    grid-area: nine;
+}
+
+.calculadora button#mul {
+    grid-area: mul;
+}
+
+.calculadora button#four {
+    grid-area: four;
+}
+
+.calculadora button#five {
+    grid-area: five;
+}
+
+.calculadora button#six {
+    grid-area: six;
+}
+
+.calculadora button#sub {
+    grid-area: sub;
+}
+
+.calculadora button#one {
+    grid-area: one;
+}
+
+.calculadora button#two {
+    grid-area: two;
+}
+
+.calculadora button#three {
+    grid-area: three;
+}
+
+.calculadora button#add {
+    grid-area: add;
 }
