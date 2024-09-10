@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To-Do List</title>
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/modal.css">
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
 </head>
 <body>
@@ -22,7 +23,7 @@
 
     <!-- Filtro de Tarefas Completas/Incompletas -->
     <form action="index.php" method="GET">
-        <select name="filter">
+        <select name="filter" class="filtro">
             <option value="all" <?= !isset($_GET['filter']) || $_GET['filter'] == 'all' ? 'selected' : '' ?>>Todas</option>
             <option value="complete" <?= isset($_GET['filter']) && $_GET['filter'] == 'complete' ? 'selected' : '' ?>>Completas</option>
             <option value="incomplete" <?= isset($_GET['filter']) && $_GET['filter'] == 'incomplete' ? 'selected' : '' ?>>Incompletas</option>
@@ -32,15 +33,12 @@
 
     <ul>
         <?php
-            // Conexão com o banco de dados
-            $conn = mysqli_connect('localhost', 'root', '', 'todolist');
-
-            // Caso haja uma falha na conexão
+            $conn = mysqli_connect('localhost','root','','todolist');
             if ($conn->connect_error) {
-                die("Conexão falhou: " . $conn->connect_error);
+                die("Conexão falhou $conn->connect_error");
             }
 
-            // Inicializa a consulta SQL
+            // Inicia a consulta SQL
             $sql = "SELECT * FROM tarefas WHERE 1";
 
             // Filtragem por completas ou incompletas
@@ -68,19 +66,45 @@
                     echo "<li>
                             <input type='checkbox' onclick='toggleComplete({$row['id']})' $checked>
                             {$row['tarefa']}
-                            <a href='delete_tarefa.php?id={$row['id']}' class='delete'>Excluir</a>
+                            <a href='#' class='delete' onclick='openModal({$row['id']})'>Excluir</a>
                         </li>";
                 }
             } else {
                 echo "<li>Nenhuma tarefa encontrada</li>";
             }
 
-            // Fecha a conexão com o banco de dados
             $conn->close();
         ?>
     </ul>
 
+    <!-- Modal -->
+    <div id="deleteModal" class="modal">
+        <div class="modal-content">
+            <p>Tem certeza que deseja excluir esta tarefa?</p>
+            <button id="confirmDelete" class="delete-btn">Excluir</button>
+            <button class="cancel-btn" onclick="closeModal()">Cancelar</button>
+        </div>
+    </div>
+
     <script>
+        let tarefaId = null;
+
+        function openModal(id) {
+            tarefaId = id;
+            document.getElementById('deleteModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('deleteModal').style.display = 'none';
+            tarefaId = null;
+        }
+
+        document.getElementById('confirmDelete').addEventListener('click', function() {
+            if (tarefaId) {
+                window.location.href = `delete_tarefa.php?id=${tarefaId}`;
+            }
+        });
+
         function toggleComplete(id) {
             window.location.href = `toggle_complete.php?id=${id}`;
         }
