@@ -1,6 +1,6 @@
 <?php 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        $task = $S_POST['tarefa'];
+        $tarefa = $_POST['tarefa'];
 
         // Conexão com o banco
         $conn = new mysqli('localhost', 'root', '', 'todolist');

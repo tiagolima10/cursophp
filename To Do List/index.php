@@ -9,8 +9,8 @@
 </head>
 <body>
     <h1>To-Do List PHP</h1>
-    <form action="add_tarefa" method="post">
-        <input type="text" name="tarefa"placeholder="Adicione uma nova tarefa" required>
+    <form action="add_tarefa.php" method="post">
+        <input type="text" name="tarefa" placeholder="Adicione uma nova tarefa" required>
         <button type="submit">Adicionar</button>
     </form>
 
