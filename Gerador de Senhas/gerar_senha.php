@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $senha .= $caracteresDisponiveis[random_int(0, strlen($caracteresDisponiveis) - 1)];
         }
     } else {
-        echo "Por favor, selecione pelo menos uma opção.";
+        header('Location: index.php');
         exit;
     }
 }
