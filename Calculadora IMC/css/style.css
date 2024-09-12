@@ -1,0 +1,117 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    text-align: center;
+    padding: 20px;
+}
+
+h1 {
+    color: #4CAF50;
+}
+
+form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+input[type="number"] {
+    width: calc(100% - 22px);
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.result p {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+/* Classe para baixo peso */
+.baixopeso {
+    background-color: #ffcc00;
+    width: 30%;
+    padding: 10px;
+    margin: auto;
+    border-radius: 20px;
+    color: black;
+}
+
+/* Classe para peso saudável */
+.pesosaudavel {
+    background-color: #00cc00;
+    width: 30%;
+    padding: 10px;
+    margin: auto;
+    border-radius: 20px;
+    color: black;
+}
+
+/* Classe para sobrepeso */
+.sobrepeso {
+    background-color: #ff9900;
+    width: 30%;
+    padding: 10px;
+    margin: auto;
+    border-radius: 20px;
+    color: black;
+}
+
+/* Classe para obesidade grau 1 */
+.obesidadegrau1 {
+    background-color: #ff6600;
+    width: 30%;
+    padding: 10px;
+    margin: auto;
+    border-radius: 20px;
+    color: black;
+}
+
+/* Classe para obesidade grau 2 */
+.obesidadegrau2 {
+    background-color: #ff3300;
+    width: 30%;
+    padding: 10px;
+    margin: auto;
+    border-radius: 20px;
+    color: black;
+}
+
+/* Classe para obesidade grau 3 */
+.obesidadegrau3 {
+    background-color: #cc0000;
+    width: 30%;
+    padding: 10px;
+    margin: auto;
+    border-radius: 20px;
+    color: black;
+}
+
+/* Classe para mensagens de erro */
+.erro {
+    color: #ff0000; /* Cor vermelha para valores inválidos */
+}
