@@ -38,27 +38,30 @@
     <?php endif; ?>
 
     <script>
+        // Função Validar Formulário
         function validarFormulario() {
-        const peso = document.getElementById('peso');
-        const altura = document.getElementById('altura');
-        let valido = true;
+            const peso = document.getElementById('peso');
+            const altura = document.getElementById('altura');
+            let valido = true;
 
-        if (peso.value <= 0 || peso.value > 500) {
-            peso.style.borderColor = "red";
-            valido = false;
-        } else {
-            peso.style.borderColor = "";
+            // Peso válido
+            if (peso.value <= 0 || peso.value > 500) {
+                peso.style.borderColor = "red";
+                valido = false;
+            } else {
+                peso.style.borderColor = "";
+            }
+
+            // Altura válida
+            if (altura.value <= 0 || altura.value > 3) {
+                altura.style.borderColor = "red";
+                valido = false;
+            } else {
+                altura.style.borderColor = "";
+            }
+
+            return valido;
         }
-
-        if (altura.value <= 0 || altura.value > 3) {
-            altura.style.borderColor = "red";
-            valido = false;
-        } else {
-            altura.style.borderColor = "";
-        }
-
-        return valido;
-    }
     </script>
 
 </body>
