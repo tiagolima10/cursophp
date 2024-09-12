@@ -10,8 +10,8 @@
     <h1>Sistema de Cadastro de Produtos</h1>
 
     <div class="menu">
-        <a href="./products/add_product.php" class="btn">Adicionar Novo Produto</a>
-        <a href="list_products.php" class="btn">Listar Produtos</a>
+        <a href="./products/add_produtos.php" class="btn">Adicionar Novo Produto</a>
+        <a href="./products/list_produtos.php" class="btn">Listar Produtos</a>
     </div>
 </body>
 </html>

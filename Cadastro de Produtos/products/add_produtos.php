@@ -10,7 +10,7 @@
 </head>
 <body>
     <h1>Adicionar Produtos</h1>
-    <form action="add_product.php" method="POST">
+    <form action="add_produtos.php" method="POST">
         <label for="nome">Nome do Produto: </label>
         <input type="text" name="nome" id="nome" required>
 
