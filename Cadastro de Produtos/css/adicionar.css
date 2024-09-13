@@ -75,3 +75,21 @@ a:hover {
     background-color: #002da8;
     transition: ease 0.3s;
 }
+
+/* Estilo para o alerta */
+.alert-success {
+    display: none;
+    background-color: #4CAF50; /* Verde de sucesso */
+    color: white;
+    padding: 15px;
+    margin-top: 20px;
+    border-radius: 5px;
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+    margin: 20px auto;
+}
+
+.alert-success.show {
+    display: block;
+}

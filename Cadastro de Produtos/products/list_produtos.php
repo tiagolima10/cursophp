@@ -11,7 +11,18 @@
 <?php
     // Verificar se o produto foi deletado com sucesso
     if (isset($_GET['success']) && $_GET['success'] == 1) {
-        echo "<p style='color: green;'>Produto deletado com sucesso!</p>";
+        echo "
+        <div id='alert' style='color: white; background-color:green; max-width:25%;margin:auto; padding:5px; border-radius: 10px; text-align:center;'>
+            Produto deletado com sucesso!
+        </div>
+    
+        <script>
+            var alertBox = document.getElementById('alert');
+            alertBox.classList.add('show');
+            setTimeout(function() {
+                alertBox.style.display = 'none';
+            }, 2000);
+        </script>";
     }
 
     // Conectar ao banco de dados

@@ -23,6 +23,14 @@
         <button type="submit">Adicionar</button>
     </form>
 
+    <!-- Alerta de sucesso -->
+    <div id="alert" class="alert-success">
+        Produto adicionado com sucesso!
+    </div>
+
+    <a href="../index.php"><span>Voltar</span></a>
+    <a href="../products/list_produtos.php"><span>Lista de Produtos</span></a>
+
     <?php 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $nome = $_POST['nome'];
@@ -33,11 +41,15 @@
             $stmt = $pdo->prepare($sql);
             $stmt->execute([$nome, $descricao, $preco]);
 
-            echo "Produto adicionado com sucesso";
+            // JS Produto adicionado
+            echo "<script>
+                    var alertBox = document.getElementById('alert');
+                    alertBox.classList.add('show');
+                    setTimeout(function() {
+                        alertBox.classList.remove('show');
+                    }, 2000);
+                  </script>";
         }
     ?>
-
-    <a href="../index.php"><span>Voltar</span></a>
-    <a href="../products/list_produtos.php"><span>Lista de Produtos</span></a>
 </body>
 </html>
