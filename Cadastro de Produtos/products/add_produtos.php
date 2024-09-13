@@ -1,4 +1,4 @@
-<?= include '../includes/db_connect.php'; ?>
+<?php include '../includes/db_connect.php'; ?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Adicionar Produto</title>
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/adicionar.css">
 </head>
 <body>
     <h1>Adicionar Produtos</h1>
@@ -36,5 +36,8 @@
             echo "Produto adicionado com sucesso";
         }
     ?>
+
+    <a href="../index.php"><span>Voltar</span></a>
+    <a href="../products/list_produtos.php"><span>Lista de Produtos</span></a>
 </body>
 </html>

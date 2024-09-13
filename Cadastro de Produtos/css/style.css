@@ -1,6 +1,7 @@
+/* Estilo geral */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
+    background-color: #c7c7c7;
     color: #000000;
     text-align: center;
     padding: 20px;
@@ -8,25 +9,73 @@ body {
 
 h1 {
     color: #000000;
+    margin-bottom: 20px;
 }
 
-.menu {
-    margin-top: 50px;
-}
-
-.btn {
-    display: inline-block;
-    padding: 10px 20px;
-    margin: 10px;
-    background-color: #000000;
-    color: white;
+/* Estilo para o link de voltar */
+a {
     text-decoration: none;
+    background-color: #2f66ff;
+    color: white;
+    padding: 10px 20px;
     border-radius: 5px;
+    margin-top: 20px;
+    display: inline-block;
 }
 
-.btn:hover {
-    background-color: #aaaaaa;
-    color: black;
+a:hover {
+    background-color: #002da8;
+    color: rgb(255, 255, 255);
     transition: ease 0.3s;
 }
 
+/* Estilo para a tabela */
+table {
+    width: 60%;
+    margin: 0 auto;
+    border-collapse: collapse;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+th {
+    background-color: #2f66ff;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Estilo para as ações (editar e deletar) */
+td a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 5px;
+}
+
+a.deletar {
+    background-color: #ff0000;
+}
+
+a.editar {
+    background-color: #747474;
+}
+
+td a:hover {
+    text-decoration: underline;
+    color: #fff;
+    transition: ease 0.3s;
+}
+
+/* Estilo para a mensagem de erro ou quando não há produtos */
+p {
+    color: #ff0000;
+    font-size: 1.2em;
+    margin-top: 20px;
+}

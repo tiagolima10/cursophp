@@ -11,6 +11,7 @@
 
     <div class="menu">
         <a href="./products/add_produtos.php" class="btn">Adicionar Novo Produto</a>
+        <?php ?>
         <a href="./products/list_produtos.php" class="btn">Listar Produtos</a>
     </div>
 </body>
