@@ -5,6 +5,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista dos Produtos</title>
     <link rel="stylesheet" href="../css/style.css">
+    <style>
+        /* Estilos para o modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .close {
+            color: red;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .modal button {
+            margin: 10px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .cancel {
+            background-color: grey;
+            color: white;
+        }
+
+        .confirm {
+            background-color: red;
+            color: white;
+        }
+    </style>
 </head>
 <body>
 
@@ -47,7 +93,7 @@
                 echo "<td>" . htmlspecialchars($row['preco']) . "</td>";
                 echo "<td>
                         <a href='edit_produtos.php?id=" . $row['id'] . "' class=\"editar\">Editar</a> |
-                        <a href='delete_produtos.php?id=" . $row['id'] . "' class=\"deletar\">Deletar</a>
+                        <a href='#' class=\"deletar\" data-id=\"" . $row['id'] . "\">Deletar</a>
                     </td>";
                 echo "</tr>";
             }
@@ -62,5 +108,47 @@
 ?>
 
     <a href="../index.php"><span>Voltar</span></a>
+
+    <!-- Modal de confirmação -->
+    <div id="confirmModal" class="modal">
+        <div class="modal-content">
+            <p>Tem certeza que deseja excluir este produto?</p>
+            <button class="cancel">Cancelar</button>
+            <button class="confirm">Excluir</button>
+        </div>
+    </div>
+
+    <script>
+        // Abrir o modal ao clicar em deletar
+        const deleteLinks = document.querySelectorAll('.deletar');
+        const modal = document.getElementById('confirmModal');
+        const cancelBtn = document.querySelector('.cancel');
+        const confirmBtn = document.querySelector('.confirm');
+        let productId = null;
+
+        deleteLinks.forEach(link => {
+            link.addEventListener('click', function(event) {
+                event.preventDefault();
+                productId = this.getAttribute('data-id');
+                modal.style.display = 'flex';
+            });
+        });
+
+        cancelBtn.addEventListener('click', function() {
+            modal.style.display = 'none';
+        });
+
+        // Confirmar a exclusão
+        confirmBtn.addEventListener('click', function() {
+            window.location.href = `delete_produtos.php?id=${productId}`;
+        });
+
+        // Fechar o modal ao clicar fora da caixa
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        };
+    </script>
 </body>
 </html>
