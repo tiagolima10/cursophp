@@ -42,3 +42,33 @@
     background-color: red;
     color: white;
 }
+
+.confirmacao {
+    color: black;
+    font-weight: bold;
+}
+
+/* Estilos específicos para o modal de edição */
+#editModal .modal-content {
+    width: 400px;
+    max-width: 100%;
+}
+
+#editModal form input, 
+#editModal form textarea {
+    width: 90%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#editModal .cancel {
+    background-color: grey;
+    color: white;
+}
+
+#editModal .confirm {
+    background-color: red;
+    color: white;
+}
