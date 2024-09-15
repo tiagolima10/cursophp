@@ -48,7 +48,7 @@
     font-weight: bold;
 }
 
-/* Estilos específicos para o modal de edição */
+/* Modal de edição */
 #editModal .modal-content {
     width: 400px;
     max-width: 100%;
@@ -71,4 +71,22 @@
 #editModal .confirm {
     background-color: red;
     color: white;
+}
+
+.paginas {
+    background-color: #5482ff;
+    padding: 7px 15px;
+    border-radius: 5px;
+    margin: 15px 2px -5px 2px;
+}
+
+.paginas:hover {
+    background-color: #2761ff;
+    border: 2px solid #1c4dbf;
+}
+
+.paginas.active {
+    background-color: #002da8;
+    border: 1px solid #1c4dbf;
+    font-weight: bold;
 }

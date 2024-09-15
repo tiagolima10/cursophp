@@ -1,4 +1,4 @@
-/* Estilo geral */
+/* Geral */
 body {
     font-family: Arial, sans-serif;
     background-color: #c7c7c7;
@@ -12,7 +12,7 @@ h1 {
     margin-bottom: 20px;
 }
 
-/* Estilo para o link de voltar */
+/* Link de voltar */
 a {
     text-decoration: none;
     background-color: #2f66ff;
@@ -29,7 +29,7 @@ a:hover {
     transition: ease 0.3s;
 }
 
-/* Estilo para a tabela */
+/* Tabela */
 table {
     width: 60%;
     margin: 0 auto;
@@ -52,7 +52,7 @@ tr:nth-child(even) {
     background-color: #f2f2f2;
 }
 
-/* Estilo para as ações (editar e deletar) */
+/* Editar e Deletar */
 td a {
     color: #fff;
     text-decoration: none;
@@ -73,7 +73,7 @@ td a:hover {
     transition: ease 0.3s;
 }
 
-/* Estilo para a mensagem de erro ou quando não há produtos */
+/* Mensagem de erro ou quando não há produtos */
 p {
     color: #ff0000;
     font-size: 1.2em;

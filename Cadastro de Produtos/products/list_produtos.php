@@ -13,19 +13,19 @@
     // Conectar ao banco de dados
     require '../includes/db_connect.php';
 
-    // Determinar o número de registros por página
-    $registros_por_pagina = 5; // Definimos quantos produtos serão exibidos por página
+    // Número de produtos por página
+    $registros_por_pagina = 5;
 
-    // Pegar a página atual pela URL (se não houver, começa pela página 1)
+    // Pega a página atual pela URL
     $pagina_atual = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
     $offset = ($pagina_atual - 1) * $registros_por_pagina;
 
-    // Filtros de pesquisa (nome, preço mínimo, preço máximo)
+    // Filtros da pesquisa
     $filtro_nome = isset($_GET['nome']) ? $_GET['nome'] : '';
     $filtro_preco_min = isset($_GET['preco_min']) ? $_GET['preco_min'] : '';
     $filtro_preco_max = isset($_GET['preco_max']) ? $_GET['preco_max'] : '';
 
-    // Construir a consulta SQL com filtros
+    // Consulta SQL com filtros
     $sql = "SELECT * FROM products WHERE 1=1";
 
         if (!empty($filtro_nome)) {
@@ -110,9 +110,10 @@
 
     // Links de paginação
     echo "<div>";
-        for ($i = 1; $i <= $total_paginas; $i++) {
-            echo "<a href='list_produtos.php?pagina=$i'>" . $i . "</a> ";
-        }
+    for ($i = 1; $i <= $total_paginas; $i++) {
+        $classe_ativa = ($i == $pagina_atual) ? "active" : ""; // Adiciona a classe 'active' na página atual
+        echo "<a href='list_produtos.php?pagina=$i' class=\"paginas $classe_ativa\"> $i </a> ";
+    }
     echo "</div>";
 ?>
 
