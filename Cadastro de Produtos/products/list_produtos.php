@@ -81,7 +81,7 @@
         </div>
 
         <div>
-            <button type='submit' style='padding: 6px 15px; background-color: #28a745; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;'>
+            <button type='submit' style='padding: 6px 15px; background-color: #747474; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;'>
                 Filtrar
             </button>
         </div>
