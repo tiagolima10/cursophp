@@ -10,53 +10,110 @@
 <body>
 
 <?php
-    // Verificar se o produto foi deletado ou editado com sucesso
-    if (isset($_GET['success']) && $_GET['success'] == 1) {
-        echo "
-        <div id='alert' style='color: white; background-color:green; max-width:25%;margin:auto; padding:5px; border-radius: 10px; text-align:center;'>
-            Produto deletado com sucesso!
-        </div>";
-    } elseif (isset($_GET['edit_success']) && $_GET['edit_success'] == 1) {
-        echo "
-        <div id='alert' style='color: white; background-color:green; max-width:25%;margin:auto; padding:5px; border-radius: 10px; text-align:center;'>
-            Produto editado com sucesso!
-        </div>";
-    }
-
     // Conectar ao banco de dados
     require '../includes/db_connect.php';
 
-    try {
-        // Consulta para buscar todos os produtos
-        $sql = "SELECT * FROM products";
-        $stmt = $pdo->query($sql);
+    // Determinar o número de registros por página
+    $registros_por_pagina = 5; // Definimos quantos produtos serão exibidos por página
 
-        // Verifica se existem produtos
-        if ($stmt->rowCount() > 0) {
-            // Exibe os produtos
-            echo "<h1>Lista dos Produtos</h1>";
-            echo "<table border='1'>";
-            echo "<tr><th>Nome</th><th>Descrição</th><th>Preço</th><th>Ações</th></tr>";
-            
-            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                echo "<tr>";
-                echo "<td>" . htmlspecialchars($row['nome']) . "</td>";
-                echo "<td>" . htmlspecialchars($row['descricao']) . "</td>";
-                echo "<td> R$ " . number_format($row['preco'], 2, ',', '.') . "</td>";
-                echo "<td>
-                        <a href='#' class=\"editar\" data-id=\"" . $row['id'] . "\" data-nome=\"" . htmlspecialchars($row['nome']) . "\" data-descricao=\"" . htmlspecialchars($row['descricao']) . "\" data-preco=\"" . $row['preco'] . "\">Editar</a> |
-                        <a href='#' class=\"deletar\" data-id=\"" . $row['id'] . "\">Deletar</a>
-                    </td>";
-                echo "</tr>";
-            }
+    // Pegar a página atual pela URL (se não houver, começa pela página 1)
+    $pagina_atual = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
+    $offset = ($pagina_atual - 1) * $registros_por_pagina;
 
-            echo "</table>";
-        } else {
-            echo "<p>Nenhum produto cadastrado ainda.</p>";
+    // Filtros de pesquisa (nome, preço mínimo, preço máximo)
+    $filtro_nome = isset($_GET['nome']) ? $_GET['nome'] : '';
+    $filtro_preco_min = isset($_GET['preco_min']) ? $_GET['preco_min'] : '';
+    $filtro_preco_max = isset($_GET['preco_max']) ? $_GET['preco_max'] : '';
+
+    // Construir a consulta SQL com filtros
+    $sql = "SELECT * FROM products WHERE 1=1";
+
+        if (!empty($filtro_nome)) {
+            $sql .= " AND nome LIKE :nome";
         }
-    } catch (PDOException $e) {
-        echo "Erro: " . $e->getMessage();
+        if (!empty($filtro_preco_min)) {
+            $sql .= " AND preco >= :preco_min";
+        }
+        if (!empty($filtro_preco_max)) {
+            $sql .= " AND preco <= :preco_max";
+        }
+
+    $sql .= " LIMIT :limite OFFSET :offset";
+    
+    $stmt = $pdo->prepare($sql);
+
+        // Bind dos parâmetros dos filtros
+        if (!empty($filtro_nome)) {
+            $stmt->bindValue(':nome', '%' . $filtro_nome . '%');
+        }
+        if (!empty($filtro_preco_min)) {
+            $stmt->bindValue(':preco_min', $filtro_preco_min);
+        }
+        if (!empty($filtro_preco_max)) {
+            $stmt->bindValue(':preco_max', $filtro_preco_max);
+        }
+        $stmt->bindValue(':limite', $registros_por_pagina, PDO::PARAM_INT);
+        $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+
+    $stmt->execute();
+
+    // Exibe os produtos
+    echo "<h1>Lista dos Produtos</h1>";
+
+    // Formulário de filtros
+    echo "<form method='GET' style='display: flex; flex-wrap: wrap; justify-content: center; align-items: end; gap: 15px; margin-bottom: 20px;'>
+        <div style='flex: 0;'>
+            <label for='nome' style='display: block; font-weight: bold;'>Nome:</label>
+            <input type='text' name='nome' value='" . htmlspecialchars($filtro_nome) . "' 
+                   style='padding: 5px; width: 250px; border-radius: 5px; border: 1px solid #ccc;'>
+        </div>
+        
+        <div style='flex: 0;'>
+            <label for='preco_min' style='display: block; font-weight: bold;'>Preço mínimo:</label>
+            <input type='number' name='preco_min' value='" . htmlspecialchars($filtro_preco_min) . "' 
+                   style='padding: 5px; width: 120px; border-radius: 5px; border: 1px solid #ccc;'>
+        </div>
+        
+        <div style='flex: 0;'>
+            <label for='preco_max' style='display: block; font-weight: bold;'>Preço máximo:</label>
+            <input type='number' name='preco_max' value='" . htmlspecialchars($filtro_preco_max) . "' 
+                   style='padding: 5px; width: 120px; border-radius: 5px; border: 1px solid #ccc;'>
+        </div>
+
+        <div>
+            <button type='submit' style='padding: 6px 15px; background-color: #28a745; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;'>
+                Filtrar
+            </button>
+        </div>
+      </form>";
+
+    echo "<table border='1'>
+          <tr><th>Nome</th><th>Descrição</th><th>Preço</th><th>Ações</th></tr>";
+
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        echo "<tr>";
+        echo "<td>" . htmlspecialchars($row['nome']) . "</td>";
+        echo "<td>" . htmlspecialchars($row['descricao']) . "</td>";
+        echo "<td> R$ " . number_format($row['preco'], 2, ',', '.') . "</td>";
+        echo "<td>
+                <a href='#' class='editar' data-id='" . $row['id'] . "'>Editar</a> |
+                <a href='#' class='deletar' data-id='" . $row['id'] . "'>Deletar</a>
+              </td>";
+        echo "</tr>";
     }
+    echo "</table>";
+
+    // Paginação - calcular o total de produtos para determinar o número de páginas
+    $stmt_count = $pdo->query("SELECT COUNT(*) FROM products");
+    $total_registros = $stmt_count->fetchColumn();
+    $total_paginas = ceil($total_registros / $registros_por_pagina);
+
+    // Links de paginação
+    echo "<div>";
+        for ($i = 1; $i <= $total_paginas; $i++) {
+            echo "<a href='list_produtos.php?pagina=$i'>" . $i . "</a> ";
+        }
+    echo "</div>";
 ?>
 
     <a href="../index.php"><span>Voltar</span></a>
