@@ -1,6 +1,8 @@
 <?php 
 
-class Atendimento
+// Classe que não pode ser instanciada com objetos
+// Somente utilzada para Herança
+abstract class Atendimento
 {
     public $data; // PUBLIC pode acessar em quakquer local
     private $tempo; // PRIVATE: Só posso acessar na mesma classe
@@ -28,6 +30,3 @@ class Diaria extends Atendimento
 $d1 = new Diaria();
 $d1->definirValor(100.00);
 $d1->data = '01/05/2000';
-echo $d1->data;
-
-var_dump($d1);
