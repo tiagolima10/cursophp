@@ -36,11 +36,16 @@ class Diarista implements Saldo
     }
 }
 
+function realizaAcaoDepositar(Saldo $pessoa, $valor)
+{
+    $pessoa->depositar($valor);
+}
+
 $cliente = new Cliente();
-$cliente->depositar(100);
+realizaAcaoDepositar($cliente, 500);
+
+$diarista = new Diarista();
+realizaAcaoDepositar($diarista, 500);
 
 var_dump($cliente);
-
-$cliente-> sacar(10);
-
-var_dump($cliente);
+var_dump($diarista);
