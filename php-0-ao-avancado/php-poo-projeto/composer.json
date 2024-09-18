@@ -1,0 +1,16 @@
+{
+    "name": "tiago/php-poo-projeto",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Tiago Lima da Anunciação",
+            "email": "tiagoanunc@gmail.com"
+        }
+    ],
+    "require": {}
+}
