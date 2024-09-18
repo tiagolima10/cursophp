@@ -1,8 +1,14 @@
 <?php 
 
-include("Diarista.php");
+require_once("Diarista.php");
+require_once("src/Diarista.php");
 
-$maria = new Diarista();
-$maria->nome = 'Maria da Silva';
+use Raiz\Diarista;
+use Src\Level1\Level2\Diarista as DiaristaSrc;
+
+$maria = new Diarista;
+
+$joao = new DiaristaSRC;
 
 var_dump($maria);
+var_dump($joao);

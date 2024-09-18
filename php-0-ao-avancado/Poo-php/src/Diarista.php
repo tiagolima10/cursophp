@@ -1,6 +1,6 @@
 <?php 
 
-namespace Raiz;
+namespace Src\Level1\Level2;
 
 class Diarista
 {
