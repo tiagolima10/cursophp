@@ -10,5 +10,4 @@ $maria = new Diarista;
 
 $joao = new DiaristaSRC;
 
-var_dump($maria);
-var_dump($joao);
+var_dump($maria, $joao);
