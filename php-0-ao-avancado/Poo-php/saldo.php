@@ -41,7 +41,7 @@ function realizaAcaoDepositar(Saldo $pessoa, $valor)
     $pessoa->depositar($valor);
 }
 
-$cliente = new Cliente();
+$cliente = new Cliente('Tiago');
 realizaAcaoDepositar($cliente, 500);
 
 $diarista = new Diarista();
