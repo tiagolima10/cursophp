@@ -1,13 +1,13 @@
 <?php 
 
+declare(strict_types= 1);
+
 namespace App\Model;
 
 class Diarista
 {
-    public $nome; 
-
-    public function __construct(string $nome)
-    {
-        $this->nome = $nome;
-    }
+    // Enxuga o tamanho das Classes (SOMENTE NO PHP 8)
+    public function __construct(
+        public string $nome
+    ){}
 }

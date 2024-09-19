@@ -1,25 +1,24 @@
 <?php 
 
+declare(strict_types= 1);
+
 namespace App\Model;
 
 class Diaria
 {
-    public $data;
+    // Enxuga o tamanho das Classes (SOMENTE NO PHP 8)
+    public function __construct(
+        public string $data, 
+        public int $tempo, 
+        public Diarista $diarista, 
+        public Cliente $cliente
+    ){}
 
-    public $tempo;
-
-    public Diarista $diarista;
-
-    public Cliente $cliente;
-
-    public function __construct($data, $tempo, Diarista $diarista, Cliente $cliente)
-    {
-        $this->data = $data;
-        $this->tempo = $tempo;
-        $this->diarista = $diarista;
-        $this->cliente = $cliente;
-    }
-
+    /**
+     * Retorna a lista das Diárias
+     * 
+     * @return void
+     */
     static public function obterDiarias()
     {
         return [
