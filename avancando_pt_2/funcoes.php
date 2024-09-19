@@ -45,7 +45,7 @@ echo "</ul>";
 <body>
     <h1>Contas Correntes</h1>
 
-    <?php foreach($contasCorrentes as $cpf => $conta) { ?>
+    <?php foreach($contasCorrentes as $cpf => $conta) : ?>
     <dl>
         <dt>
             <?= $conta['titular']; ?> - <?= $cpf; ?>
@@ -54,6 +54,6 @@ echo "</ul>";
             Saldo: <?= $conta['saldo']; ?>
         </dd>
     </dl>
-    <?php } ?>
+    <?php endforeach; ?>
 </body>
 </html>
